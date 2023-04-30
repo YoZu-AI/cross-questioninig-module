@@ -1,8 +1,8 @@
 import openai
+import os
 from science_cross_questioning_functions import get_primary_answer, get_secondary_answer,create_prompts
-from config import API_KEY
 
-openai.api_key = API_KEY
+open.api.key = os.getenv("OPENAI_API_KEY")
 
 input_query = 'what is rainbow'
 primary_answer, primary, secondary = get_primary_answer(input_query)
