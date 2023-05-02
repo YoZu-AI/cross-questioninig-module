@@ -2,6 +2,8 @@ import random
 import openai
 from science_cross_questioning_prompts import prompt_get_answer, prompt_get_entities, prompt_get_questions
 from config import MODEL
+import os
+openai.api_key = os.environ['OPENAI_API_KEY']
 
 def get_primary_answer(question):
   primary_prompt = prompt_get_answer.format(input_question = question)  
@@ -10,7 +12,7 @@ def get_primary_answer(question):
       {'role': 'user', 'content': primary_prompt}])
   model_answer = primary_answer['choices'][0]['message']['content']
   entities_prompt = prompt_get_entities.format(question = input, answer = model_answer)
-  primary_answer = openai.ChatCompletion.create(model = "gpt-3.5-turbo",temperature = 0,
+  primary_answer = openai.ChatCompletion.create(model = MODEL,temperature = 0,
       messages= [{'role': 'system', 'content': 'You are a helpful AI science Named Entity extractor'},
       {'role': 'user', 'content': entities_prompt}])
   string = primary_answer['choices'][0]['message']['content']
