@@ -73,7 +73,17 @@ def mcq_cross_questioning(read):
         explanations.append(string.split('Explanation:')[1].strip())
       elif 'Options' in string:
           options.append([output_strip[i+1][2:].strip(), output_strip[i+2][2:].strip(), output_strip[i+3][2:].strip(), output_strip[i+4][2:].strip()])
-  return question,answers,options,explanations
+
+  mcq_json_list = []
+  for i in range(len(question)):
+      mcq_json = {}
+      mcq_json['Question'] = question[i]
+      mcq_json['Answer'] =  answers[i]
+      mcq_json['Options'] = options[i]
+      mcq_json['Explanation'] = explanations[i]
+      mcq_json_list.append(mcq_json)
+  return mcq_json_list
+  #return question,answers,options,explanations
 
 read = ['what is a rainbow?', 'what is light?']
 print(mcq_cross_questioning(read))
