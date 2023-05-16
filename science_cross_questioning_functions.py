@@ -29,8 +29,8 @@ def get_primary_answer(question, student_class):
   #print(secondary_concepts)
   return model_answer, primary_concepts, secondary_concepts
 
-def get_secondary_answer(input_query, student_class):
-  primary_prompt = prompt_get_answer.format(input_question = input_query, class_no = student_class)  
+def get_secondary_answer(input_prompt, student_class):
+  primary_prompt = prompt_get_answer.format(input_question = input_prompt, class_no = student_class)  
   primary_answer = openai.ChatCompletion.create(model = MODEL,temperature = 0,
       messages= [{'role': 'system', 'content': 'You are a helpful AI science tutor who provides answer for given question' },
       {'role': 'user', 'content': primary_prompt}])
