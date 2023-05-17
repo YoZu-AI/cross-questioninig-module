@@ -109,6 +109,20 @@ def get_detailed_science_solution(previous_solution, student_class):
   return completion.choices[0].message.content
   #return completion.choices[0].message.content
 
+
+def similar_example(science_query):
+  similar_science_example_list = []
+  similar_example_prompt = 'For the given science query, {science_problem}. Provide the similar example query for the students. Do not provide the answer to the problem.The question should not be precided with any other sentence than the similar question'
+  input_prompt = similar_example_prompt.format(science_problem = science_query)
+  completion = openai.ChatCompletion.create(
+    model = "gpt-3.5-turbo",
+    temperature = 0.4,
+    messages=[
+      {"role": "system", "content": 'You are an expert Science AI tutor who strictly only provides similar science query as the given input.'},
+      {"role": "user", "content": input_prompt}])
+  science_similar_example  = completion.choices[0].message.content
+  similar_science_example_list.append(science_similar_example)
+  return similar_science_example_list
 ##########################################################################
 
 input_query = 'what is a fruit'
@@ -122,9 +136,6 @@ pre_concept_mcq = get_pre_concept_mcq(science_concepts_list, student_class)
 ans = science_solution(input_query, student_class)
 detailed_science_solution = get_detailed_science_solution(ans, student_class)
 
-
-
-
 print(science_concepts_list)
 print(topic)
 print(definition)
@@ -134,3 +145,4 @@ print(detailed_definition)
 print(pre_concept_mcq)
 print(ans)
 print(detailed_science_solution)
+print(similar_example(input_query))
