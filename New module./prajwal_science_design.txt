@@ -1,0 +1,67 @@
+
+#Science
+def get_primary_answer(question):
+    answer, p_etities, s_entity = call_the_model()
+    prompts = create_prompts(p_etities, s_entity)
+    return answer, etities, prompts
+def get_secondary_answer(question):
+    answer, etities = call_the_model()
+    return answer
+def create_prompts(p_etitie, s_entity):
+    prompts = []
+    return prompts
+
+def create_MCQS(list_of_prompts_read_by_user):
+    list_of_MCQs = []
+    return list_of_MCQs
+    
+
+
+#Endpoint -1
+get_primary_answer - query -> answer, 3-buttons, primary_concept, secondary_concept
+
+#
+what is photosynthesis? -> "definition", "What is the use of Co2", "What is the use of sunlight in photosynthesis", "New topic", photosynthesis, 'co2, sunlight'
+
+#Frontend
+store -> primarcy_concept, secondary_concept 
+Show answer and provide 3 buttons
+
+
+#3 probabilties 
+
+1. User 1st prompt
+2. User 2nd prompt
+3. User 3nd prompt
+
+#CASE -1
+
+#fronted
+1. "selected_prompt":
+store = not_selected_prompts
+
+
+
+
+#ENDPOINT-2
+#Endpoint -2
+get_secondary_answer - "selected prompt" -> answer
+
+#
+
+if only_new_topic_prompt_is_left:
+    #go for MCQS
+    1 .Let us see what you have learnt? - MCQ Endpoint
+    2. I want to learn more about same topic(photosythesis) -Endpoint -3
+    3. Want to learn something new - Endpoint-1
+#case-2
+
+#endpoint-3
+
+create_prompts(p_entities, s_entities)
+
+#MCQ Endpoint -4
+create_MCQS(list_of_prompts_seen_by_user)
+
+
+
