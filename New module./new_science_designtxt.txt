@@ -1,0 +1,59 @@
+
+def get_subtopics(science_query)
+	return list of  pre_requisite, science_query
+	
+# front end
+Single prompt - do you know so and so subtopics?
+two buttons, yes and no
+
+
+
+	
+	# already_know
+			
+		#if yes
+		# Do you like to read about pre_requisite or solve mcq #loop
+		
+		# if solve mcq
+		def get_mcq(list_of_subtopics):
+			return mcq
+			
+		def get_mcq_results(correct answers, incorrect answers, score)
+			return score
+		#if students score > 60 
+			def get_solution(science_query):
+				return solution, science_query
+			
+			
+			# prompt - ask whether he understood the solution ## loop
+			# 2 buttons, yes and No
+
+				# if yes, 
+				#prompt - > Need more practice example?
+				# 2 buttons, yes and No
+
+					#if No, end of the flow ( get answer to original query)
+					#if Yes, 
+
+					def similar_examples(science_query_query):
+						return list of examples
+			
+				#if No,
+				def get_detailed_solution(science_query, previous_solution):
+				return solution, science_query
+		#if student score < 60
+			continue the loop of line 15 
+	
+	#if No
+	# prompt - > which among the following you dont know?
+	# multiple select buttons, each buttons are one subtopics
+	def_explain_subtopis(list_of_subtopics):
+		return explanation[should contain all the subtopics]
+	
+	#prompt -> whether you understood the subtopics explanation?
+	#2 buttons, yes and No
+	#if Yes,
+	execute already know algorithm
+	#if No,
+	provide even more detailed and simpler explanation of sub topics
+	
