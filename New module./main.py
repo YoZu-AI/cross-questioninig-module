@@ -88,6 +88,26 @@ def get_pre_concept_mcq(science_concepts_list, student_class):
       mcq_json_pre_list.append(mcq_json)
   return mcq_json_pre_list
 
+def science_solution(science_query, class_no):
+  science_prompt = 'Provide a precise and concise answer to the query, {query}. Answer should be suitable for students in studying in {student_class}th class'
+  prompt_input = science_prompt.format(query = science_query, student_class = class_no)
+  #print(prompt_input)
+  completion = openai.ChatCompletion.create(model = 'gpt-3.5-turbo',temperature = 0,
+  messages=[{'role': 'system', 'content': 'You are a kind and helpful science AI tutor who provide clear and concise answer'},
+        {'role': 'user', 'content': prompt_input}])
+  return completion['choices'][0]['message']['content']
+
+def get_detailed_science_solution(previous_solution, student_class):
+  prompt_format = 'provide detailed explanation of the following, {solution}. explanation should be easy to understand and simpler but in great detail so that a student of class {class_no} can understand'
+  prompt = prompt_format.format(solution = previous_solution, class_no = student_class)
+  completion = openai.ChatCompletion.create(
+  model = "gpt-3.5-turbo",
+  temperature = 0,
+  messages=[
+     {"role": "system", "content": 'You are an expert science AI tutor who provides the simpler and detailed explanation of solution for the query'},
+     {"role": "user", "content": prompt}])
+  return completion.choices[0].message.content
+  #return completion.choices[0].message.content
 
 ##########################################################################
 
@@ -97,8 +117,12 @@ student_class = '8'
 science_concepts_list = get_science_concepts(input_query)
 topic, definition, example = get_science_concept_explanation(science_concepts_list, student_class)
 previous_definition = definition[0]
-detailed_answer = get_detailed_science_definition(previous_definition, student_class)
+detailed_definition = get_detailed_science_definition(previous_definition, student_class)
 pre_concept_mcq = get_pre_concept_mcq(science_concepts_list, student_class) 
+ans = science_solution(input_query, student_class)
+detailed_science_solution = get_detailed_science_solution(ans, student_class)
+
+
 
 
 print(science_concepts_list)
@@ -106,5 +130,7 @@ print(topic)
 print(definition)
 print(example)
 print(previous_definition)
-print(detailed_answer)
+print(detailed_definition)
 print(pre_concept_mcq)
+print(ans)
+print(detailed_science_solution)
