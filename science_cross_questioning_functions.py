@@ -39,8 +39,8 @@ def get_secondary_answer(input_prompt, student_class):
 
 def create_prompts(primary_concepts, secondary_concepts):
   prompt_generated_processed = []
-  secondary_concepts_entity = random.choice(secondary_concepts)
-  question_prompt = prompt_get_questions.format(list_secondary_concepts = secondary_concepts_entity, list_primary_concepts = primary_concepts)
+  #secondary_concepts_entity = random.choice(secondary_concepts)
+  question_prompt = prompt_get_questions.format(list_secondary_concepts = str(secondary_concepts), list_primary_concepts = primary_concepts)
   prompt_generator = openai.ChatCompletion.create(model = MODEL,temperature = 0,
       messages= [
       {'role': 'user', 'content': question_prompt}])
@@ -48,6 +48,7 @@ def create_prompts(primary_concepts, secondary_concepts):
   prompt_generated = [i[2:].strip() for i in prompt_generated]
   #print(prompt_generated)
   return prompt_generated
+
 
 
 def mcq_cross_questioning(read, student_class):
